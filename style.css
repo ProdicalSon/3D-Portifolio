@@ -18,7 +18,7 @@ font-family: "Poppins", sans-serif;
 --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
 --pages-color: linear-gradient(90deg, #fff, #ddd);
 --border: 1.3rem solid #00abf0;
---box-shadow: 0 0.6rem Irgba(0, 0, 0, 2);
+--box-shadow: 0 0.6rem ##006e9a;
 }
 
 body
@@ -264,4 +264,44 @@ border-radius: 50%;
 .nextprev-btn.back
 {
     left: 1.5rem;
+}
+.services-box
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+}
+.services-box .services-content
+{
+    flex: 1 1 10rem;
+    border: .1rem solid #00abf0;
+    border-radius: .5rem;
+    padding: .5rem .3rem .2rem;
+    text-align: center;
+   transition: .3s ease;
+}
+.services-box .services-content:hover
+{
+    box-shadow: var(--box-shadow);
+}
+
+.services-box i
+{
+    font-size: 1.7rem;
+    color: var(--main-color);
+}
+.services-content h3
+{
+    font-size: .1rem;
+}
+.services-content p
+{
+     
+    margin: .2rem 0 .2rem;
+}
+.services-content .btn
+{
+    width: 8rem;
+    height: 1.5rem;
 }
