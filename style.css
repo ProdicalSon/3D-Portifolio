@@ -62,7 +62,7 @@ body
 }
 .cover.cover-right.turn
 {
-    transform: rotateY(180deg);  
+    transform: rotateY(180deg);
 }
 .book
 {
@@ -76,7 +76,7 @@ body
    position: absolute;
    width: 50%;
    height: 100%;
-   background: var(--pages-color); 
+   background: var(--pages-color);
    box-shadow: 0 0 .6rem rgba(0, 0, 0, .1);
    display: flex;
    padding: 2rem;
@@ -108,7 +108,7 @@ body
 .profile-page .social-media
 {
     /* background-color: red; */
-    margin: .6rem 0 .8rem;     
+    margin: .6rem 0 .8rem;
 }
 .profile-page .social-media a
 {
@@ -117,10 +117,116 @@ body
     align-items: center;
     width: 2.5rem;
     height: 2.5rem;
-    background: transparent; 
+    background: transparent;
     border: var(--border);
     border-radius: 50%;
     font-size: 1.3rem;
-    color: var(--cover-color);   
+    color: var(--cover-color);
     margin: 0 .2rem;
+    transform: .5s;
+}
+.profile-page .social-media a:hover
+{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+.profile-page p
+{
+    text-align: justify;
+}
+.btn
+{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: var(--main-color);
+    border: var(--border);
+    transform: .5s;
+    border-radius: .5rem;
+    font-size: 2.2cqb;
+    font-weight: 500;
+    color: var(--white-color);
+    margin: 0 1rem;
+}
+.btn:hover
+{
+    color:  rgb(131, 40, 109);
+}
+.btn-box .btn:nth-child(2)
+{
+    color: var(--white-color);
+}
+.btn-box .btn:nth-child(2):hover
+{
+    background: var(--main-color);
+    color: rgb(131, 40, 109);
+}
+.profile-page .btn-box
+{
+    /* background-color: red; */
+    margin-top: 1.2rem;
+}
+.book-page.page-right
+{
+    position: absolute;
+    right: 0;
+    transform-style: preserve-3d;
+}
+.book-page .page-front,
+.book-page .page-back
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--pages-color);
+    padding: 1.5rem 2rem;
+}
+.book-page .page-front
+{
+    transform: rotateY(0deg) translateZ(1px);
+}
+.book-page .page-back
+{
+    transform: rotateY(180deg) translateZ(1px);
+}
+.title
+{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.workeduc-box
+{
+    /* background: red; */
+    border-left: .1rem solid #00abf0;
+}
+.workeduc-box .workeduc-content
+{
+    position: relative;
+    /* background: seagreen; */
+    padding-left: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+.workeduc-box .workeduc-content::before
+{
+content: '';
+position: absolute;
+top: 0;
+left: -0.65rem;
+width: 1.2rem;
+height: 1.2rem;
+background: var(--main-color);
+border-radius: 50%;
+
+}
+.workeduc-content .year
+{
+    color: var(--main-color);
+}
+.workeduc-content .year i
+{
+    margin-right: .4rem;
 }
