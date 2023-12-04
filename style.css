@@ -425,6 +425,11 @@ border-radius: 50%;
 }
 
 /* Contact me */
+
+.contact-box
+{
+    text-align: center;
+}
 .contact-box .field
 {
     width: 100%;
@@ -435,4 +440,60 @@ border-radius: 50%;
     font-size: 1rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
+}
+.contact-box .field::placeholder
+{
+    color: var(--text-color);
+
+}
+.contact-box textarea
+{
+    resize: none;
+    height: 14rem;
+}
+.contact-box .btn
+{
+    cursor: pointer;
+}
+
+.back-profile
+{
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1rem;
+    color: var(--main-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.back-profile:hover
+{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+.back-profile p
+{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: 1rem;
+    transform: translateX(-50%) scale(.5);
+    color: var(--main-color);
+    opacity: 0;
+    transition: .5s;
+}
+.back-profile:hover p
+{
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -1.8rem;
 }
