@@ -17,7 +17,7 @@ font-family: "Poppins", sans-serif;
 --white-color: #fff;
 --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
 --pages-color: linear-gradient(90deg, #fff, #ddd);
---border: 1.3rem solid #00abf0;
+--border: .1rem solid #00abf0;
 --box-shadow: 0 0.6rem ##006e9a;
 }
 
@@ -356,4 +356,52 @@ border-radius: 50%;
 {
     font-size: 2.5rem;
     color: var(--main-color);
+}
+.portfolio-box .img-box
+{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    /* background: red; */
+    border: var(--border);
+    border-radius: .5rem;
+    overflow: hidden;
+}
+.portfolio-box .img-box img
+{
+    width: 100%;
+    object-fit: cover;
+    padding: .3rem .3rem .3rem;
+    transition: .5s ease;
+}
+.portfolio-box .img-box img:hover
+{
+    transform: scale(1.1);
+} 
+.portfolio-box .info-box
+{
+    /* background: red; */
+    margin: 1rem 0 1.5rem;
+}
+.portfolio-box .info-box .info-title
+{
+    /* background: seagreen; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+.portfolio-box .info-box .info-title h3
+{
+    font-size: 1.3rem;
+}
+.portfolio-box .info-box .info-title a
+{
+    color: var(--main-color);
+    display: flex;
+    align-items: center;
+}
+.portfolio-box .info-box .info-title a i
+{
+    
 }
