@@ -240,6 +240,7 @@ border-radius: 50%;
     position: absolute;
     bottom: 1.2rem;
     left: 50%;
+    color: var(--main-color);
     transform: translateX(-50%);
 }
 .nextprev-btn
