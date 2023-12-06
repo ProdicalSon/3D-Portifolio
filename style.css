@@ -709,7 +709,7 @@ border-radius: 50%;
 .services-box .services-content
 {
     flex: 1 1 2rem;
-    border: .1rem solid #00abf0;
+    border: .01rem solid #00abf0;
     border-radius: .5rem;
     /* padding: .8rem .4rem .3rem; */
     text-align: center;
@@ -772,7 +772,7 @@ border-radius: 50%;
     display: inline-flex;
     width: 4rem;
     height: 4rem;
-    border: .1rem solid #00abf0;
+    border: .01rem solid #00abf0;
     border-radius: .3rem;
     flex-direction: column;
     font-weight: 400;
@@ -787,7 +787,7 @@ border-radius: 50%;
 }
 .skills-content .content span i
 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: var(--main-color);
 }
 }
