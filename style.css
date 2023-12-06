@@ -552,10 +552,74 @@ border-radius: 50%;
     }
 
     .book-page {
-        padding: 1rem; /* Add some padding to the book pages on smaller screens */
+        padding: 1rem; 
+        font-size: 8px;/* Add some padding to the book pages on smaller screens */
     }
 
-    /* Add more specific styles or adjustments as needed */
+    .profile-page img
+{
+    max-width: 120px ;
+    border-radius: 50%;
+    border: .25rem solid var(--main-color);
+    margin-bottom: .8rem;
+
+}
+.profile-page h1{
+    font-size: .8rem;
+    line-height: 1;
+}
+.profile-page h3{
+    font-size: .8rem;
+  color: var(--main-color);
+}
+.profile-page .social-media
+{
+    /* background-color: red; */
+    margin: .6rem 0 .8rem;
+}
+.profile-page .social-media a
+{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: var(--cover-color);
+    margin: 0 .2rem;
+    transform: .5s;
+}
+.profile-page .social-media a:hover
+{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+.profile-page p
+{
+    text-align: justify;
+}
+
+    .btn
+    {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 7.5rem;
+        height: 2rem;
+        background: var(--main-color);
+        border: var(--border);
+        transform: .5s;
+        border-radius: .5rem;
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--white-color);
+        margin: 0 1rem;
+        margin-bottom: 1rem;
+        margin-left: 2.5rem;
+    }
 }
 
 /* Add more media queries for different screen sizes if necessary */
