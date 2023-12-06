@@ -536,7 +536,7 @@ border-radius: 50%;
 
 /* Media Queries */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
     body {
         font-size: 8px; /* Adjust font size for smaller screens */
     }
@@ -562,6 +562,7 @@ border-radius: 50%;
     border-radius: 50%;
     border: .25rem solid var(--main-color);
     margin-bottom: .8rem;
+    text-align: center;
 
 }
 .profile-page h1{
@@ -589,7 +590,7 @@ border-radius: 50%;
     border-radius: 50%;
     font-size: .8rem;
     color: var(--cover-color);
-    margin: 0 .2rem;
+    margin: 0 5px;
     transform: .5s;
 }
 .profile-page .social-media a:hover
@@ -606,6 +607,7 @@ border-radius: 50%;
 
     .btn
     {
+        flex-direction: column;
         display: inline-flex;
         justify-content: center;
         align-items: center;
