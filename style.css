@@ -530,40 +530,31 @@ border-radius: 50%;
 
 
 
+/* General Styles */
 
+/* Add your existing styles here */
 
-@media only screen and (max-width: 600px) {
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
     body {
-        font-size: 14px; 
+        font-size: 14px; /* Adjust font size for smaller screens */
     }
 
     .wrapper {
-        padding: 10px;
+        width: 100%; /* Make the wrapper full-width on smaller screens */
+        padding: 1rem; /* Add some padding to the wrapper */
     }
 
-    .book {
-        flex-direction: column;
+    .cover {
+        width: 100%; /* Make the cover full-width on smaller screens */
     }
 
     .book-page {
-        width: 100%;
+        padding: 1rem; /* Add some padding to the book pages on smaller screens */
     }
 
-    
+    /* Add more specific styles or adjustments as needed */
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1200px) {
-    body {
-        font-size: 12px; 
-    }
-
-    .wrapper {
-        padding: 10px;
-    }
-
- 
-}
-
-
-
-
+/* Add more media queries for different screen sizes if necessary */
