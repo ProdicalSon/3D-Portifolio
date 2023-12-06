@@ -580,7 +580,7 @@ border-radius: 50%;
 .profile-page .social-media a
 {
     display: inline-flex;
-    justify-content: column;
+    justify-content: center;
     align-items: center;
     width: 1.8rem;
     height: 1.8rem;
@@ -600,6 +600,7 @@ border-radius: 50%;
 .profile-page p
 {
     text-align: justify;
+    padding: auto;
     font-size: 6px;
 }
 
