@@ -600,7 +600,7 @@ border-radius: 50%;
 .profile-page p
 {
     text-align: justify;
-    padding: 2px 2xp 2px;
+    padding: 2px 0 0 2px;
     font-size: 6px;
 }
 
