@@ -639,8 +639,20 @@ border-radius: 50%;
     /* background: seagreen; */
     padding-left: 1.6rem;
     margin-bottom: 1.2rem;
+    left: -1.43rem;
 }
+.workeduc-box .workeduc-content::before
+{
+content: '';
+position: absolute;
+top: 0;
+left: -0.65rem;
+width: .8rem;
+height: .8rem;
+background: var(--main-color);
+border-radius: 50%;
 
+}
 .workeduc-content .year
 {
     color: var(--main-color);
@@ -649,6 +661,87 @@ border-radius: 50%;
 {
     margin-right: .4rem;
     font-size: .5rem;
+}
+
+
+.number-page
+{
+    position: absolute;
+    bottom: 1.2rem;
+    font-size: .8rem;
+    left: 50%;
+    /* color: var(--main-color); */
+    transform: translateX(-50%);
+}
+.nextprev-btn
+{
+    position: absolute;
+    right: 1.5rem;
+    bottom: .9rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--second-text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+.nextprev-btn:hover
+{
+    color: var(--main-color);
+}
+.nextprev-btn.back
+{
+    left: 1.5rem;
+}
+
+.services-box
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    /* background: red; */
+    height: 35%;
+    
+}
+.services-box .services-content
+{
+    flex: 1 1 2rem;
+    border: .1rem solid #00abf0;
+    border-radius: .5rem;
+    /* padding: .8rem .4rem .3rem; */
+    text-align: center;
+   transition: .3s ease;
+   height: 51%;
+  
+}
+.services-box .services-content:hover
+{
+    box-shadow: var(--box-shadow);
+}
+
+.services-box i
+{
+    font-size: 1rem;
+    color: var(--main-color);
+}
+.services-content h3
+{
+    font-size: 8px;
+}
+.services-content p
+{
+     
+    margin: .1px 0 .1px;
+    font-size: 8px;
+}
+.services-content .btn
+{
+    width: 5rem;
+    height: 1.2rem;
+    border-radius: 4px;
 }
 }
 
