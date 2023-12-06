@@ -840,6 +840,39 @@ border-radius: 50%;
     font-size: 1.5rem;
     color: var(--main-color);
 }
+
+
+
+.contact-box
+{
+    text-align: center;
+    background: red;
+}
+.contact-box .field
+{
+    width: 100%;
+    background: transparent;
+    border: var(--border);
+    border-radius: .3rem;
+    padding: .8rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+.contact-box .field::placeholder
+{
+    color: var(--text-color);
+
+}
+.contact-box textarea
+{
+    resize: none;
+    height: 14rem;
+}
+.contact-box .btn
+{
+    cursor: pointer;
+}
 }
 
 /* Add more media queries for different screen sizes if necessary */
