@@ -587,7 +587,7 @@ border-radius: 50%;
     background: transparent;
     border: var(--border);
     border-radius: 50%;
-    font-size: 1.3rem;
+    font-size: .8rem;
     color: var(--cover-color);
     margin: 0 .2rem;
     transform: .5s;
@@ -600,7 +600,7 @@ border-radius: 50%;
 .profile-page p
 {
     text-align: justify;
-    font-size: 8px;
+    font-size: 6px;
 }
 
     .btn
