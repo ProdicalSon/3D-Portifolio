@@ -538,13 +538,14 @@ border-radius: 50%;
 
 @media only screen and (max-width: 768px) {
     body {
-        font-size: 14px; /* Adjust font size for smaller screens */
+        font-size: 8px; /* Adjust font size for smaller screens */
     }
 
     .wrapper {
         width: 100%; /* Make the wrapper full-width on smaller screens */
         padding: 1rem; /* Add some padding to the wrapper */
-    }
+        margin-top: 5px;
+        font-size: 8px;
 
     .cover {
         width: 100%; /* Make the cover full-width on smaller screens */
@@ -558,3 +559,4 @@ border-radius: 50%;
 }
 
 /* Add more media queries for different screen sizes if necessary */
+}
