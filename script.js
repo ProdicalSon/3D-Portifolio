@@ -98,3 +98,21 @@ pages [pageNumber].style.zIndex = 10 + index;
     }, 500)
     }, (index + 1) * 200 + 2100)
     })
+
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby2HVUscnx70QKa6sy77PYTYnYXsVYr4UtyOQhej99jZl_DzK3z3U0_N73s_g_czIKp-g/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Sent Succesfuly"
+            setTimeout(function(){
+              msg.innerHTML = ""  
+            }, 1000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
