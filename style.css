@@ -555,6 +555,7 @@ border-radius: 50%;
     .cover {
         width: 49%;
         height: 72%;
+        margin-top: 70px;
         position: fixed; 
     }
 
@@ -563,6 +564,7 @@ border-radius: 50%;
         height: 70%;
         padding: 1rem; 
         font-size: 8px;
+        margin-top: 70px;
     }
 
     .profile-page img
