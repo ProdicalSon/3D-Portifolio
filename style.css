@@ -671,6 +671,7 @@ border-radius: 50%;
     /* background: seagreen; */
     padding-left: 1.6rem;
     margin-bottom: .4rem;
+    margin-top: -8px;
     left: -1.43rem;
 }
 .workeduc-content p
@@ -695,6 +696,7 @@ border-radius: 50%;
 {
     color: var(--main-color);
     font-size: 8px;
+    margin-top: -10px;
 }
 .workeduc-content .year i
 {
