@@ -1079,13 +1079,14 @@ border-radius: 50%;
     margin-top: -10px;
 }
 .profile-page h3 {
-    font-size: .8rem;
+    font-size: .7rem;
   color: var(--main-color);
   margin-left: -39px;
 }
 .profile-page .social-media
 {
     /* background-color: red; */
+    margin-top: -3px;
     margin-left: -18px;
     width: 130px;
     
@@ -1113,10 +1114,9 @@ border-radius: 50%;
 }
 .profile-page p
 {
-    /* background: red;  */
-    width: 149px;
-    margin-left: -9px;
-    margin-top: -3px;
+    background: red; 
+    width: 140px;
+    margin-left: -6px;
     text-align: justify;
     padding: 2px 0 0 2px;
     font-size: 7px;
