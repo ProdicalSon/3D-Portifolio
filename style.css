@@ -1216,61 +1216,58 @@ border-radius: 50%;
 
 }
        /* my services */
-@media only screen and (max-width: 400px) {
+       @media only screen and (max-width: 400px) {
         .services-box {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center; 
-            align-items: center; 
-            gap: 0.5rem; 
+            flex-wrap: wrap; /* Ensure cards wrap to new lines if needed */
+            justify-content: center; /* Center the cards */
+            align-items: center;
+            gap: 0.3rem; /* Minimal gap between cards */
             background: red;
-            margin-left: -10px;
+            width: 100%; /* Full width */
             margin: 0 auto;
-            width: 100%; 
-            padding: 1rem;
+            padding: 0.5rem; /* Minimize padding */
             box-sizing: border-box;
         }
     
         .services-box .services-content {
             background: seagreen;
-            height: 120px; 
-            width: 45%; 
-            flex: 1 1 auto; 
+            width: 45%; /* Two cards per row */
+            height: 100px; /* Reduced height */
+            flex: 1 1 auto;
             border: 0.01rem solid #00abf0;
-            margin-left: -10px;
             border-radius: 0.3rem;
             text-align: center;
+            padding: 0.3rem; /* Compact padding */
             transition: 0.3s ease;
-            padding: 0.5rem;
         }
     
         .services-box .services-content:hover {
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Lighter shadow */
         }
     
         .services-box i {
-            font-size: 0.6rem; 
-            margin-bottom: 0.3rem;
+            font-size: 0.6rem; /* Smaller icon */
+            margin-bottom: 0.2rem;
             color: var(--main-color);
         }
     
         .services-content h3 {
-            font-size: 0.6rem; 
-            margin: 0.2rem 0;
+            font-size: 0.8rem; /* Compact heading */
+            margin: 0.1rem 0;
         }
     
         .services-content p {
-            font-size: 0.6rem;
-            margin: 0.2rem 0;
+            font-size: 0.7rem; 
+            margin: 0.1rem 0;
         }
     
         .services-content .btn {
-            width: 70%; 
-            height: 1rem;
-            border-radius: 4px;
-            font-size: 0.6rem;
-            margin-top: 0.5rem;
+            width: 60%; /* Fit button size to content */
+            height: 1.2rem; 
+            border-radius: 3px;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
         }
     }
-}
-   
+}    
