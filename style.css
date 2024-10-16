@@ -1219,23 +1219,25 @@ border-radius: 50%;
 @media only screen and (max-width: 400px) {
         .services-box {
             display: flex;
-            flex-wrap: wrap; /* Wraps the cards to the next line if needed */
-            justify-content: center; /* Centers content horizontally */
+            flex-wrap: wrap;
+            justify-content: center; 
             align-items: center; 
-            gap: 0.5rem; /* Minimize space between cards */
+            gap: 0.5rem; 
             background: red;
-            margin: 0 auto; /* Center the container */
-            width: 100%; /* Full width */
+            margin-left: -10px;
+            margin: 0 auto;
+            width: 100%; 
             padding: 1rem;
             box-sizing: border-box;
         }
     
         .services-box .services-content {
             background: seagreen;
-            height: 120px; /* Adjusted height for better fit */
-            width: 45%; /* Two cards per row */
+            height: 120px; 
+            width: 45%; 
             flex: 1 1 auto; 
             border: 0.01rem solid #00abf0;
+            margin-left: -10px;
             border-radius: 0.3rem;
             text-align: center;
             transition: 0.3s ease;
@@ -1247,7 +1249,7 @@ border-radius: 50%;
         }
     
         .services-box i {
-            font-size: 0.7rem; /* Visible but compact */
+            font-size: 0.7rem; 
             margin-bottom: 0.3rem;
             color: var(--main-color);
         }
@@ -1263,7 +1265,7 @@ border-radius: 50%;
         }
     
         .services-content .btn {
-            width: 70%; /* Button adjusts with card size */
+            width: 70%; 
             height: 1.5rem;
             border-radius: 4px;
             font-size: 0.7rem;
