@@ -1114,7 +1114,7 @@ border-radius: 50%;
 }
 .profile-page p
 {
-    background: red; 
+    /* background: red;  */
     width: 140px;
     margin-left: -6px;
     text-align: justify;
