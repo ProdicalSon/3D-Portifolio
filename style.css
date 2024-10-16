@@ -1216,56 +1216,59 @@ border-radius: 50%;
 
 }
        /* my services */
-       @media only screen and (max-width: 400px) {
+@media only screen and (max-width: 400px) {
         .services-box {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
+            flex-wrap: wrap; /* Wraps the cards to the next line if needed */
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; 
+            gap: 0.5rem; /* Minimize space between cards */
             background: red;
-            margin-left: -15px; 
-            width: 70%; 
-            height: 70%; 
-            padding: 5px;
+            margin: 0 auto; /* Center the container */
+            width: 100%; /* Full width */
+            padding: 1rem;
+            box-sizing: border-box;
         }
     
         .services-box .services-content {
             background: seagreen;
-            height: 50px; 
-            width: 50px;
-            /* flex: 1 1 auto;  */
+            height: 120px; /* Adjusted height for better fit */
+            width: 45%; /* Two cards per row */
+            flex: 1 1 auto; 
             border: 0.01rem solid #00abf0;
             border-radius: 0.3rem;
-            margin-left: -10px; 
-            gap: 0.5rem;
             text-align: center;
             transition: 0.3s ease;
+            padding: 0.5rem;
         }
     
         .services-box .services-content:hover {
-            box-shadow: var(--box-shadow);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
         }
     
         .services-box i {
-            font-size: 0.5rem; 
-            margin-bottom: 2px;
+            font-size: 0.7rem; /* Visible but compact */
+            margin-bottom: 0.3rem;
             color: var(--main-color);
         }
     
         .services-content h3 {
-            font-size: 6px;
-            margin-top: 0;
+            font-size: 0.9rem; 
+            margin: 0.2rem 0;
         }
     
         .services-content p {
-            font-size: 6px;
+            font-size: 0.8rem;
+            margin: 0.2rem 0;
         }
     
         .services-content .btn {
-            width: 40px;
-            height: 1rem;
-            border-radius: 3px;
-            font-size: 7px;
+            width: 70%; /* Button adjusts with card size */
+            height: 1.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
         }
     }
-}    
+}
+   
