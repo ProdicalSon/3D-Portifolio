@@ -656,10 +656,10 @@ border-radius: 50%;
 {
     flex-direction: column;
     padding-left: 1.6rem;
-    width: 114%;
-    height: 380px;
+    width: 120%;
+    height: 460px;
     margin-bottom: 5px;
-    font-size: 7px;
+    font-size: 10px;
     /* background: red; */
     border-left: .1rem solid #00abf0;
 }
@@ -667,25 +667,28 @@ border-radius: 50%;
 {
     text-align: center;
     margin-bottom: .3rem;
-    font-size: 10px;
+    font-size: 14px;
 }
 .workeduc-box .workeduc-content
 {
-    width: 120px;
-    height: 120px;
-    font-size: 7px;
+    width: 160px;
+    height: 140px;
+    font-size: 10px;
     position: relative;
     /* background: seagreen; */
     padding-left: 1.6rem;
     margin-bottom: .4rem;
-    margin-top: -8px;
-    left: -1.43rem;
+    margin-top: -5px;
+    left: -23px;
 }
 .workeduc-content p
 {
    display: flex;
    justify-content: center; 
     align-items: center;
+    font-size: 10px;
+    line-height: 12px;
+    
 }
 .workeduc-box .workeduc-content::before
 {
@@ -702,15 +705,18 @@ border-radius: 50%;
 .workeduc-content .year
 {
     color: var(--main-color);
-    font-size: 8px;
+    font-size: 12px;
     margin-top: -10px;
 }
 .workeduc-content .year i
 {
     margin-right: .4rem;
-    font-size: .5rem;
+    font-size: .9rem;
 }
-
+.workeduc-content h3
+{
+    font-size: 10px;
+}
 
 .number-page
 {
