@@ -1163,16 +1163,16 @@ border-radius: 50%;
 {
     text-align: center;
     margin-bottom: .3rem;
-    font-size: 14px;
+    font-size: 8px;
 }
 .workeduc-box .workeduc-content
 {
-    width: 160px;
+    width: 117px;
     height: 140px;
     font-size: 10px;
     position: relative;
-    /* background: seagreen; */
-    padding-left: 1.6rem;
+    background: seagreen;
+    padding-left: 1.2rem;
     margin-bottom: .4rem;
     margin-top: -5px;
     left: -23px;
@@ -1182,7 +1182,7 @@ border-radius: 50%;
    display: flex;
    justify-content: center; 
     align-items: center;
-    font-size: 10px;
+    font-size: 7px;
     line-height: 12px;
     
 }
@@ -1201,13 +1201,13 @@ border-radius: 50%;
 .workeduc-content .year
 {
     color: var(--main-color);
-    font-size: 12px;
+    font-size: 7px;
     margin-top: -10px;
 }
 .workeduc-content .year i
 {
     margin-right: .4rem;
-    font-size: .9rem;
+    font-size: .6rem;
 }
 .workeduc-content h3
 {
