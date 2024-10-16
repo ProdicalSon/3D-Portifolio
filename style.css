@@ -1221,7 +1221,7 @@ border-radius: 50%;
            display: flex;
            flex-wrap: wrap;
            gap: .6rem;
-           /* background: red; */
+           background: red;
            margin-left: -20px;
            width: 90px;
            height: 70%;
@@ -1231,11 +1231,12 @@ border-radius: 50%;
        .services-box .services-content
        {
            background: seagreen;
-           height: 70px;
+           height: 100px;
            width: 90px;
            flex: 1 1 2rem;
            border: .01rem solid #00abf0;
            border-radius: .3rem;
+           margin-left: -17px;
            gap: 1rem;
            text-align: center;
           transition: .3s ease;
