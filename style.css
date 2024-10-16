@@ -1223,16 +1223,16 @@ border-radius: 50%;
            gap: .6rem;
            background: red;
            margin-left: -20px;
-           width: 90px;
+           width: 70px;
            height: 70%;
-           padding: 2px;
+           padding: 20px;
            
        }
        .services-box .services-content
        {
            background: seagreen;
            height: 100px;
-           width: 90px;
+           width: 100px;
            flex: 1 1 2rem;
            border: .01rem solid #00abf0;
            border-radius: .3rem;
@@ -1256,19 +1256,19 @@ border-radius: 50%;
        }
        .services-content h3
        {
-           font-size: 7px;
+           font-size: 6px;
            margin-top: -6px;
        }
        .services-content p
        {
             
            /* margin: 1px 0 1px; */
-           font-size: 7px;
+           font-size: 6px;
        }
        .services-content .btn
        {
            width: 40px;
-           height: 1.2rem;
+           height: 1rem;
            border-radius: 3px;
            font-size: 6px;
        }
