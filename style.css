@@ -1022,7 +1022,7 @@ border-radius: 50%;
 
 }
 
-/* Add more media queries for different screen sizes if necessary */
+
 }
 @media only screen and (max-width: 400px) {
     *{
@@ -1215,4 +1215,60 @@ border-radius: 50%;
 }
 
 }
+       /* my services */
+       .services-box
+       {
+           display: flex;
+           flex-wrap: wrap;
+           gap: .6rem;
+           /* background: red; */
+           margin-left: -20px;
+           width: 90px;
+           height: 70%;
+           padding: 2px;
+           
+       }
+       .services-box .services-content
+       {
+           background: seagreen;
+           height: 70px;
+           width: 90px;
+           flex: 1 1 2rem;
+           border: .01rem solid #00abf0;
+           border-radius: .3rem;
+           gap: 1rem;
+           text-align: center;
+          transition: .3s ease;
+          
+         
+       }
+       .services-box .services-content:hover
+       {
+           box-shadow: var(--box-shadow);
+       }
+       
+       .services-box i
+       {
+           font-size: .4rem;
+           margin-bottom: 2px;
+           color: var(--main-color);
+       }
+       .services-content h3
+       {
+           font-size: 7px;
+           margin-top: -6px;
+       }
+       .services-content p
+       {
+            
+           /* margin: 1px 0 1px; */
+           font-size: 7px;
+       }
+       .services-content .btn
+       {
+           width: 40px;
+           height: 1.2rem;
+           border-radius: 3px;
+           font-size: 6px;
+       }
 }
