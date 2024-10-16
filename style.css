@@ -1249,26 +1249,26 @@ border-radius: 50%;
         }
     
         .services-box i {
-            font-size: 0.7rem; 
+            font-size: 0.6rem; 
             margin-bottom: 0.3rem;
             color: var(--main-color);
         }
     
         .services-content h3 {
-            font-size: 0.9rem; 
+            font-size: 0.6rem; 
             margin: 0.2rem 0;
         }
     
         .services-content p {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             margin: 0.2rem 0;
         }
     
         .services-content .btn {
             width: 70%; 
-            height: 1.5rem;
+            height: 1rem;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             margin-top: 0.5rem;
         }
     }
