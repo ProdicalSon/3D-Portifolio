@@ -45,7 +45,7 @@ body
 
 }
 
-@keyframes show-animate
+/* @keyframes show-animate
 {
    0%,30%{
     opacity: 0;
@@ -56,7 +56,7 @@ body
     opacity: 1;
     transform: rotate(0deg);
    }
-}
+} */
 
 .cover
 {
@@ -554,22 +554,22 @@ border-radius: 50%;
 
     .cover {
         width: 49%;
-        height: 72%;
+        height: 80%;
         margin-top: 60px;
         position: fixed; 
     }
 
     .book-page {
         width: 508;
-        height: 70%;
+        height: 80%;
         padding: 1rem; 
-        font-size: 8px;
+        font-size: 10px;
         margin-top: 60px;
     }
 
     .profile-page img
 {
-    max-width: 120px ;
+    max-width: 100px ;
     border-radius: 50%;
     border: .25rem solid var(--main-color);
     margin-bottom: .8rem;
@@ -581,6 +581,7 @@ border-radius: 50%;
     font-size: .8rem;
     line-height: 1;
     margin-left: -39px;
+    margin-top: -10px;
 }
 .profile-page h3 {
     font-size: .8rem;
@@ -592,6 +593,7 @@ border-radius: 50%;
     /* background-color: red; */
     margin-left: -18px;
     width: 130px;
+    
    
 }
 .profile-page .social-media a
@@ -606,7 +608,7 @@ border-radius: 50%;
     border-radius: 50%;
     font-size: .8rem;
     color: var(--cover-color);
-    margin: 0 5px;
+    margin: 3px 5px;
     transform: .5s;
 }
 .profile-page .social-media a:hover
@@ -622,25 +624,30 @@ border-radius: 50%;
     margin-top: -3px;
     text-align: justify;
     padding: 2px 0 0 2px;
-    font-size: 7px;
+    font-size: 10px;
 }
-
+.btn-box
+{
+    /* background-color: red; */
+    display: flex;
+}
     .btn
     {
         flex-direction: column;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 5.5rem;
+        width: 4.5rem;
         height: 2rem;
         background: var(--main-color);
         border: var(--border);
         transform: .5s;
-        border-radius: .5rem;
-        font-size: 11px;
+        border-radius: .3rem;
+        font-size: 10px;
         font-weight: 500;
         color: var(--white-color);
-        margin: 0 1rem;
+        margin: .1rem;
+        /* margin-top: -.3rem; */
         margin-bottom: .3rem;
         margin-left: 1rem;
     }
