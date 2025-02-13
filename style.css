@@ -531,13 +531,94 @@ border-radius: 50%;
 
 /* Media Queries */
 
-@media only screen and (max-width: 600px) {
-}
-@media only screen and (max-width: 400px) {
-    
-
+@media (max-width: 1200px) {
+    .wrapper {
+        width: 80%;
+        height: auto;
+        margin-top: 10px;
     }
 
-    @media (max-width: 800px) {
-        
-}   
+    .book-page {
+        font-size: 10px;
+    }
+
+    .profile-page img {
+        max-width: 120px;
+    }
+
+    .services-box {
+        gap: 0.5rem;
+    }
+
+    .skills-content .content span {
+        width: 4rem;
+        height: 3rem;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .wrapper {
+        width: 90%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .book-page {
+        font-size: 9px;
+        padding: 0.5rem;
+    }
+
+    .services-box {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+
+    .skills-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portfolio-box .img-box {
+        height: 8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-page img {
+        max-width: 100px;
+    }
+
+    .btn {
+        width: 7rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .contact-box .field {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .services-box .services-content {
+        padding: 0.2rem;
+    }
+
+    .skills-content .content span {
+        font-size: 0.8rem;
+    }
+
+    .contact-box .field {
+        font-size: 0.8rem;
+    }
+} 
