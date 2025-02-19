@@ -589,36 +589,433 @@ border-radius: 50%;
 }
 
 @media (max-width: 600px) {
-    .profile-page img {
-        max-width: 100px;
-    }
+    .wrapper
+{
+    position: relative;
+    width: 30rem;
+    height: 25rem;
+    /* background: red; */
+    padding: 1rem;
+    margin-top: 15px;
+    perspective: 250rem;
+    animation: show-animate 2s forwards;
 
-    .btn {
-        width: 7rem;
-        height: 2.5rem;
-        font-size: 1rem;
-    }
+}
+.cover
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--cover-color);
+    box-shadow: var(--box-shadow);
+    border-top-left-radius: .6rem;
+    border-bottom-left-radius: .6rem;
+    transform-origin: right;
 
-    .contact-box .field {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
+}
+.cover.cover-left
+{
+    z-index: -1;
+}
+.cover.cover-right
+{
+    z-index: 100;
+    transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+}
+.cover.cover-right.turn
+{
+    transform: rotateY(180deg);
+}
+.book
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    perspective: 250rem;
+}
+.book .book-page
+{
+   position: absolute;
+   width: 50%;
+   height: 100%;
+   background: var(--pages-color);
+   box-shadow: 0 0 .6rem rgba(0, 0, 0, .1);
+   display: flex;
+   padding: 1rem;
+   font-size: 6px;
 }
 
-@media (max-width: 400px) {
-    .title {
-        font-size: 1.2rem;
-    }
+.book-page.page-left
+{
+    box-shadow: -.6rem .6rem .6rem rgba(0, 0, 0, .1);
+}
+.profile-page
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   /* background: seagreen;   */
+}
+.profile-page img
+{
+    max-width: 60px ;
+    border-radius: 50%;
+    border: .20rem solid var(--main-color);
+    margin-bottom: .2rem;
 
-    .services-box .services-content {
-        padding: 0.2rem;
-    }
+}
+.profile-page h1{
+    font-size: 8px;
+    line-height: 1;
+}
+.profile-page h3{
+    font-size: 7px;
+  color: var(--main-color);
+}
+.profile-page .social-media
+{
+    /* background-color: red; */
+    margin: .4rem 0 .4rem;
+}
+.profile-page .social-media a
+{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 50%;
+    font-size: .9rem;
+    color: var(--cover-color);
+    margin: 0 .2rem;
+    transform: .5s;
+}
+.profile-page .social-media a:hover
+{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+.profile-page p
+{
+    text-align: justify;
+    font-size: 8px;
+}
+.btn{
+    border-radius: .1rem;
+    flex-direction: row;
+    width: 7.9rem;
+    height: 2.0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 
-    .skills-content .content span {
-        font-size: 0.8rem;
-    }
+}
 
-    .contact-box .field {
-        font-size: 0.8rem;
-    }
+
+.btn:hover
+{
+    color:  rgb(131, 40, 109);
+}
+.btn-box .btn:nth-child(2)
+{
+    color: var(--white-color);
+}
+.btn-box .btn:nth-child(2):hover
+{
+    background: var(--main-color);
+    color: rgb(131, 40, 109);
+}
+.profile-page .btn-box
+{
+    /* background-color: red; */
+    flex-direction: row;
+    margin-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 200px;
+    margin-left: -20px;
+}
+.book-page.page-right
+{
+    position: absolute;
+    right: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+}
+.book-page.page-right.turn
+{
+    transform: rotateY(-180deg);
+}
+.book-page .page-front,
+.book-page .page-back
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--pages-color);
+    padding: 1.5rem 2rem;
+}
+.book-page .page-front
+{
+    transform: rotateY(0deg) translateZ(1px);
+}
+.book-page .page-back
+{
+    transform: rotateY(180deg) translateZ(1px);
+}
+.title
+{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+/* #work */
+.workeduc-box
+{
+    /* background: red; */
+    border-left: .1rem solid #00abf0;
+}
+.workeduc-box .workeduc-content
+{
+    position: relative;
+    /* background: seagreen; */
+    padding-left: 1.6rem;
+    margin-bottom: .5rem;
+    font-size: .38rem;
+}
+.workeduc-box .workeduc-content::before
+{
+content: '';
+position: absolute;
+top: 0;
+left: -0.65rem;
+width: 1.2rem;
+height: 1.2rem;
+background: var(--main-color);
+border-radius: 50%;
+font-size: .38rem;
+
+}
+.workeduc-content .year
+{
+    color: var(--main-color);
+    font-size: .38rem;
+}
+.workeduc-content .year i
+{
+    margin-right: .4rem;
+    font-size: .38rem;
+}
+.number-page
+{
+    position: absolute;
+    bottom: 1.2rem;
+    font-size: .5rem;
+    left: 50%;
+    /* color: var(--main-color); */
+    transform: translateX(-50%);
+}
+.nextprev-btn
+{
+    position: absolute;
+    right: 1.5rem;
+    bottom: .9rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--second-text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+.nextprev-btn:hover
+{
+    color: var(--main-color);
+}
+.nextprev-btn.back
+{
+    left: 1.5rem;
+}
+.services-box
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* background: red; */
+    height: 85%;
+    font-size: .38rem;
+    
+    
+}
+.services-box .services-content
+{
+    flex: 1 1 1.2rem;
+    border: .1rem solid #00abf0;
+    border-radius: .5rem;
+    padding: .2rem .2rem .1rem;
+    text-align: center;
+   transition: .3s ease;
+   width: auto;
+   height: 20%;
+   
+   font-size: .3rem;
+  
+}
+.services-box .services-content:hover
+{
+    box-shadow: var(--box-shadow);
+    font-size: .3rem;
+}
+
+.services-box i
+{
+    
+    color: var(--main-color);
+    font-size: .5rem;
+}
+.services-content h3
+{
+    font-size: .3rem;
+}
+.services-content p
+{
+     
+    
+    font-size: .3rem;
+    text-align: justify;
+}
+.services-content .btn
+{
+    width: 4rem;
+    height: .8rem;
+    font-size: 10px;
+    margin-left: 35px;
+    /* background: red; */
+}
+.skills-box
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.skills-box .skills-content
+{
+    /* background: red; */
+    flex: 1 1 17rem;
+}
+.skills-content  h3
+{
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: .6rem;
+}
+.skills-content .content
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.skills-content .content span
+{
+    display: inline-flex;
+    width: 5rem;
+    height: 4rem;
+    border: .1rem solid #00abf0;
+    border-radius: .3rem;
+    flex-direction: column;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    transition: .3s ease;
+}
+.skills-content .content span:hover
+{
+    box-shadow: var(--box-shadow);
+   
+}
+.skills-content .content span i
+{
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+.portfolio-box .img-box
+{
+    display: flex;
+    width: 100%;
+    height: 11rem;
+    /* background: red; */
+    border: var(--border);
+    border-radius: .5rem;
+    overflow: hidden;
+}
+.portfolio-box .img-box img
+{
+    width: 100%;
+    object-fit: cover;
+    padding: .2rem .2rem .2em;
+    transition: .4s ease;
+}
+.portfolio-box .img-box img:hover
+{
+    transform: scale(1.1);
 } 
+.portfolio-box .info-box
+{
+    /* background: red; */
+    margin: 1rem 0 1.1rem;
+}
+.portfolio-box .info-box .info-title
+{
+    /* background: seagreen; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+}
+.portfolio-box .info-box .info-title h3
+{
+    font-size: 16px;
+}
+.portfolio-box .info-box .info-title a
+{
+    color: var(--main-color);
+    display: flex;
+    align-items: center;
+    /* background: red; */
+}
+.portfolio-box .info-box .info-title a i
+{
+    margin-left: .3rem;
+    /* background: red; */
+}
+.portfolio-box .info-box p:nth-of-type(1)
+{
+    font-weight: 600;
+    /* background: red; */
+}
+.portfolio-box .btn-box
+{
+    /* background: red; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+.portfolio-box .btn-box .btn
+{
+    margin: 0 1.15rem;
+}
+
+}
