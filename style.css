@@ -229,6 +229,11 @@ body {
 
 .workeduc-box {
     border-left: .1rem solid #00abf0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 85%;
+    overflow-y: auto;
 }
 
 .workeduc-box .workeduc-content {
@@ -288,9 +293,10 @@ body {
 
 .services-box {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 1.5rem;
     height: 85%;
+    overflow-y: auto;
 }
 
 .services-box .services-content {
@@ -498,9 +504,6 @@ body {
     transform: translateX(-50%) scale(1);
     top: -1.8rem;
 }
-
-
-/* NEW STYLES FOR ADDED PAGES */
 
 
 /* Certifications page */
