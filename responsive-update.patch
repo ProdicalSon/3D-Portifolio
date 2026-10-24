@@ -1,0 +1,1312 @@
+diff --git a/index.html b/index.html
+index eb73510..75a2361 100644
+--- a/index.html
++++ b/index.html
+@@ -3,7 +3,8 @@
+ 
+ <head>
+     <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
++    <meta name="theme-color" content="#081b29">
+     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+     <link rel="icon" href="images/brian 4.jpg">
+@@ -38,7 +39,7 @@
+                         </b>
+                     </div>
+ 
+-                    <p>Hi, I'm John Brian, a passionate Full Stack Developer currently pursuing Software Engineering at Kisii University. I specialize in creating responsive web applications with modern technologies. I believe in continuous learning and
++                    <p>Hi, I'm John Brian, a passionate Full Stack Developer and Software Engineering graduate of Kisii University (Second Class Honours, Upper Division). I specialize in creating responsive web applications with modern technologies. I believe in continuous learning and
+                         teamwork to deliver innovative and reliable solutions.</p>
+ 
+                     <div class="btn-box">
+@@ -56,9 +57,9 @@
+                     <div class="workeduc-box">
+ 
+                         <div class="workeduc-content">
+-                            <span class="year"><i class='bx bxs-calendar'></i>Feb 2025 - Aug 2025</span>
+-                            <h3>Cashier – Mt. Everest Hotel, Kisii</h3>
+-                            <p>Handled sales, billing systems, and online booking for accommodation. Managed social media presence and analyzed daily and monthly sales reports to enhance business decisions.</p>
++                            <span class="year"><i class='bx bxs-calendar'></i>Dec 2024 - Jun 2026</span>
++                            <h3>Cashier, System Management &amp; Graphic Designer – Mt. Everest Hotel, Kisii</h3>
++                            <p>Handled sales and billing as cashier, managed the hotel's booking and management systems, and designed graphics and social media content. Analyzed daily and monthly sales reports to enhance business decisions.</p>
+                         </div>
+ 
+                         <div class="workeduc-content">
+@@ -108,7 +109,7 @@
+                         <div class="workeduc-content">
+                             <span class="year"><i class='bx bxs-calendar'></i>2021 - 2025</span>
+                             <h3>Kisii University</h3>
+-                            <p>Bachelor’s Degree in Software Engineering</p>
++                            <p>Bachelor’s Degree in Software Engineering – Second Class Honours (Upper Division)</p>
+                         </div>
+ 
+                         <div class="workeduc-content">
+@@ -286,7 +287,7 @@
+                 </div>
+ 
+                 <!-- page 6 (contact me) -->
+-                <div class="page-back">
++                <div class="page-back" id="contact">
+                     <h1 class="title">Contact Me</h1>
+ 
+                     <div class="contact-box">
+@@ -306,7 +307,7 @@
+                         <i class='bx bx-chevron-left'></i>
+                     </span>
+ 
+-                    <a href="#" class="back-profile">
++                    <a href="#" class="back-profile" aria-label="Back to profile">
+                         <p>Profile</p>
+                         <i class='bx bxs-user'></i>
+                     </a>
+diff --git a/script.js b/script.js
+index 6c3ec82..61c85ce 100644
+--- a/script.js
++++ b/script.js
+@@ -1,95 +1,84 @@
+-// Updated JavaScript for additional pages
++// Must match the stacked-layout media query in style.css.
++// Below this size the flip-book is replaced by a normal scrolling page.
++const STACKED_QUERY = '(max-width: 1000px), (max-height: 520px)';
++const isStacked = () => window.matchMedia(STACKED_QUERY).matches;
+ 
+-const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
+-pageTurnBtn.forEach((el, index) => {
++
++const pages = document.querySelectorAll('.book-page.page-right');
++const pageList = Array.from(pages);
++
++// Stacking order: pages turned to the left pile up with the newest on top,
++// pages still on the right keep the first page on top.
++const turnPage = (page) => {
++    page.classList.add('turn');
++    setTimeout(() => { page.style.zIndex = 20 + pageList.indexOf(page); }, 500);
++};
++const unturnPage = (page) => {
++    page.classList.remove('turn');
++    setTimeout(() => { page.style.zIndex = 20 - pageList.indexOf(page); }, 500);
++};
++
++// next / previous buttons
++document.querySelectorAll('.nextprev-btn').forEach((el) => {
+     el.onclick = () => {
+-        const pageTurnId = el.getAttribute('data-page');
+-        const pageTurn = document.getElementById(pageTurnId);
+-        if (pageTurn.classList.contains('turn')) {
+-            pageTurn.classList.remove('turn');
+-            setTimeout(() => {
+-                pageTurn.style.zIndex = 20 - index;
+-            }, 500);
++        const page = document.getElementById(el.getAttribute('data-page'));
++        if (page.classList.contains('turn')) {
++            unturnPage(page);
+         } else {
+-            pageTurn.classList.add('turn');
+-            setTimeout(() => {
+-                pageTurn.style.zIndex = 20 + index;
+-            }, 500);
++            turnPage(page);
+         }
+-    }
+-})
++    };
++});
+ 
+-//contact me button when clicked
+-const pages = document.querySelectorAll('.book-page.page-right');
++// "Contact Me" button: flip to the contact page (or scroll to it in the stacked layout)
+ const contactMeBtn = document.querySelector('.btn.contact-me');
+ 
+-contactMeBtn.onclick = () => {
+-    pages.forEach((page, index) => {
+-        setTimeout(() => {
+-            page.classList.add('turn');
+-            setTimeout(() => {
+-                page.style.zIndex = 20 + index;
+-            }, 500)
+-        }, (index + 1) * 200 + 100)
+-    })
+-}
+-
+-//create a reverse index function
+-let totalPages = pages.length;
+-let pageNumber = 0;
+-
+-function reverseIndex() {
+-    pageNumber--;
+-    if (pageNumber < 0) {
+-        pageNumber = totalPages - 1;
++contactMeBtn.onclick = (e) => {
++    e.preventDefault();
++    if (isStacked()) {
++        document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
++        return;
+     }
+-}
++    // turn every page up to and including the contact spread (turn-3)
++    pageList.forEach((page, index) => {
++        if (index > 2) return;
++        setTimeout(() => turnPage(page), index * 200 + 100);
++    });
++};
+ 
+-// back profile when clicked
++// "Profile" button: flip everything back (or scroll to the top in the stacked layout)
+ const backProfileBtn = document.querySelector('.back-profile');
+ 
+-backProfileBtn.onclick = () => {
+-    pages.forEach((_, index) => {
+-        setTimeout(() => {
+-            reverseIndex();
+-            pages[pageNumber].classList.remove('turn');
+-            setTimeout(() => {
+-                reverseIndex();
+-                pages[pageNumber].style.zIndex = 10 + index;
+-            }, 500)
+-        }, (index + 1) * 200 + 100)
+-    })
+-}
+-
+-//opening animation
++backProfileBtn.onclick = (e) => {
++    e.preventDefault();
++    if (isStacked()) {
++        window.scrollTo({ top: 0, behavior: 'smooth' });
++        return;
++    }
++    pageList
++        .map((page, index) => ({ page, index }))
++        .filter(({ page }) => page.classList.contains('turn'))
++        .reverse()
++        .forEach(({ page }, order) => {
++            setTimeout(() => unturnPage(page), order * 200 + 100);
++        });
++};
++
++// opening animation
+ const coverRight = document.querySelector('.cover.cover-right');
+ const pageLeft = document.querySelector('.book-page.page-left');
+ 
+-//opening animation (cover right animation)
+-setTimeout(() => {
+-    coverRight.classList.add('turn');
+-}, 2100)
+-
+-setTimeout(() => {
+-    coverRight.style.zIndex = -1;
+-}, 2800)
+-
+-//opening animation (page left or profile page animation)
+-setTimeout(() => {
+-    pageLeft.style.zIndex = 20;
+-}, 3200)
+-
+-//opening animation (all page right animation)
+-pages.forEach((_, index) => {
+-    setTimeout(() => {
+-        reverseIndex();
+-        pages[pageNumber].classList.remove('turn');
+-        setTimeout(() => {
+-            reverseIndex();
+-            pages[pageNumber].style.zIndex = 10 + index;
+-        }, 500)
+-    }, (index + 1) * 200 + 2100)
+-})
++// cover opens
++setTimeout(() => coverRight.classList.add('turn'), 2100);
++setTimeout(() => { coverRight.style.zIndex = -1; }, 2800);
++
++// profile page comes forward
++setTimeout(() => { pageLeft.style.zIndex = 20; }, 3200);
++
++// pages unfold one by one, last page first
++pageList.slice().reverse().forEach((page, order) => {
++    setTimeout(() => unturnPage(page), (order + 1) * 200 + 2100);
++});
+ 
+ // Contact form submission
+ const scriptURL = 'https://script.google.com/macros/s/AKfycby2HVUscnx70QKa6sy77PYTYnYXsVYr4UtyOQhej99jZl_DzK3z3U0_N73s_g_czIKp-g/exec'
+@@ -109,46 +98,39 @@ form.addEventListener('submit', e => {
+         .catch(error => console.error('Error!', error.message))
+ })
+ 
+-// Add touch support for mobile devices
+-document.addEventListener('touchstart', handleTouchStart, false);
+-document.addEventListener('touchmove', handleTouchMove, false);
+-
++// Swipe to turn pages (book layout only, e.g. tablets in landscape)
+ let xDown = null;
+ let yDown = null;
+ 
+-function handleTouchStart(evt) {
++document.addEventListener('touchstart', (evt) => {
+     xDown = evt.touches[0].clientX;
+     yDown = evt.touches[0].clientY;
+-};
++}, { passive: true });
+ 
+-function handleTouchMove(evt) {
+-    if (!xDown || !yDown) {
++document.addEventListener('touchend', (evt) => {
++    if (xDown === null || yDown === null || isStacked()) {
++        xDown = yDown = null;
+         return;
+     }
+ 
+-    let xUp = evt.touches[0].clientX;
+-    let yUp = evt.touches[0].clientY;
+-
+-    let xDiff = xDown - xUp;
+-    let yDiff = yDown - yUp;
+-
+-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+-        if (xDiff > 0) {
+-            // Left swipe - go to next page
+-            const activePage = document.querySelector('.book-page.page-right.turn');
+-            if (activePage) {
+-                const nextBtn = activePage.querySelector('.nextprev-btn:not(.back)');
+-                if (nextBtn) nextBtn.click();
+-            }
+-        } else {
+-            // Right swipe - go to previous page
+-            const activePage = document.querySelector('.book-page.page-right.turn');
+-            if (activePage) {
+-                const prevBtn = activePage.querySelector('.nextprev-btn.back');
+-                if (prevBtn) prevBtn.click();
+-            }
+-        }
++    const xDiff = xDown - evt.changedTouches[0].clientX;
++    const yDiff = yDown - evt.changedTouches[0].clientY;
++    xDown = yDown = null;
++
++    // ignore short swipes and mostly-vertical scrolls
++    if (Math.abs(xDiff) < 50 || Math.abs(xDiff) < Math.abs(yDiff)) return;
++
++    const rightPages = Array.from(pages);
++    if (xDiff > 0) {
++        // swipe left: turn the next page that is still on the right
++        const next = rightPages.find(page => !page.classList.contains('turn'));
++        const btn = next && next.querySelector('.nextprev-btn:not(.back)');
++        if (btn) btn.click();
++    } else {
++        // swipe right: turn back the last page that is on the left
++        const turned = rightPages.filter(page => page.classList.contains('turn'));
++        const prev = turned[turned.length - 1];
++        const btn = prev && prev.querySelector('.nextprev-btn.back');
++        if (btn) btn.click();
+     }
+-    xDown = null;
+-    yDown = null;
+-};
++}, { passive: true });
+diff --git a/style.css b/style.css
+index 4fb66d5..8283315 100644
+--- a/style.css
++++ b/style.css
+@@ -1,6 +1,14 @@
+-/* Updated CSS with responsive improvements and new page styles */
++/* ==========================================================
++   Portfolio – fully responsive
++   - Large screens / laptops / tablets in landscape: 3D book that
++     scales smoothly with the viewport (everything is sized in rem,
++     and the root font-size follows the screen).
++   - Phones, tablets in portrait and very short screens: the book
++     becomes a single scrolling column (see "Stacked layout" below).
++   ========================================================== */
++
++@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+ 
+-@import url("https://fonts.googleapis.com/css?family=Poppins:wght@300%;400;500; 600; 700; 800;900&display=swap");
+ * {
+     margin: 0;
+     padding: 0;
+@@ -20,7 +28,14 @@
+     --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
+     --pages-color: linear-gradient(90deg, #fff, #ddd);
+     --border: .1rem solid #00abf0;
+-    --box-shadow: 0 0.6rem ##006e9a;
++    --box-shadow: 0 .6rem 1.2rem rgba(0, 110, 154, .35);
++}
++
++/* The book is sized in rem, so scaling the root font-size scales the whole book
++   to fit both the width and the height of any screen. */
++html {
++    font-size: clamp(8px, min(1.5vw, 2.4vh), 26px);
++    -webkit-text-size-adjust: 100%;
+ }
+ 
+ body {
+@@ -28,35 +43,30 @@ body {
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
++    min-height: 100dvh;
+     background: var(--bg-color);
+     color: var(--text-color);
+     overflow: hidden;
+ }
+ 
++:focus-visible {
++    outline: .15rem solid var(--main-color);
++    outline-offset: .15rem;
++}
++
++img {
++    max-width: 100%;
++}
++
+ .wrapper {
+     position: relative;
+     width: 64rem;
+     height: 35rem;
+     padding: 2rem;
+-    margin-top: 15px;
++    margin-top: .9rem;
+     perspective: 250rem;
+-    animation: show-animate 2s forwards;
+ }
+ 
+-
+-/* @keyframes show-animate
+-{
+-   0%,30%{
+-    opacity: 0;
+-    transform: rotate(-20deg);
+-   } 
+-
+-   100%{
+-    opacity: 1;
+-    transform: rotate(0deg);
+-   }
+-} */
+-
+ .cover {
+     position: absolute;
+     top: 0;
+@@ -99,7 +109,7 @@ body {
+     box-shadow: 0 0 .6rem rgba(0, 0, 0, .1);
+     display: flex;
+     padding: 1rem;
+-    font-size: 12px;
++    font-size: .75rem;
+ }
+ 
+ .book-page.page-left {
+@@ -107,6 +117,7 @@ body {
+ }
+ 
+ .profile-page {
++    width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+@@ -114,19 +125,22 @@ body {
+ }
+ 
+ .profile-page img {
+-    max-width: 160px;
++    width: 10rem;
++    max-width: 100%;
++    aspect-ratio: 1;
++    object-fit: cover;
+     border-radius: 50%;
+     border: .25rem solid var(--main-color);
+     margin-bottom: .8rem;
+ }
+ 
+ .profile-page h1 {
+-    font-size: 16px;
++    font-size: 1.334em;
+     line-height: 1;
+ }
+ 
+ .profile-page h3 {
+-    font-size: 15px;
++    font-size: 1.25em;
+     color: var(--main-color);
+ }
+ 
+@@ -144,9 +158,9 @@ body {
+     border: var(--border);
+     border-radius: 50%;
+     font-size: 1.3rem;
+-    color: var(--cover-color);
++    color: var(--main-color);
+     margin: 0 .2rem;
+-    transform: .5s;
++    transition: .5s;
+ }
+ 
+ .profile-page .social-media a:hover {
+@@ -166,12 +180,13 @@ body {
+     height: 3rem;
+     background: var(--main-color);
+     border: var(--border);
+-    transform: .5s;
++    transition: .5s;
+     border-radius: .5rem;
+-    font-size: 2.2cqb;
++    font-size: 1.1em;
+     font-weight: 500;
+     color: var(--white-color);
+     margin: 0 1rem;
++    cursor: pointer;
+ }
+ 
+ .btn:hover {
+@@ -227,6 +242,8 @@ body {
+     margin-bottom: 1rem;
+ }
+ 
++/* ---------- Work experience & education ---------- */
++
+ .workeduc-box {
+     border-left: .1rem solid #00abf0;
+     display: flex;
+@@ -291,6 +308,8 @@ body {
+     left: 1.5rem;
+ }
+ 
++/* ---------- Services ---------- */
++
+ .services-box {
+     display: flex;
+     flex-direction: column;
+@@ -314,24 +333,27 @@ body {
+ }
+ 
+ .services-box i {
+-    font-size: 16px;
++    font-size: 1.334em;
+     color: var(--main-color);
+ }
+ 
+ .services-content h3 {
+-    font-size: 16px;
++    font-size: 1.334em;
+ }
+ 
+ .services-content p {
+     margin: .1rem 0 .1rem;
+-    font-size: 12px;
++    font-size: 1em;
+ }
+ 
+ .services-content .btn {
+     width: 8rem;
+     height: 1.5rem;
++    font-size: 1em;
+ }
+ 
++/* ---------- Skills ---------- */
++
+ .skills-box {
+     display: flex;
+     flex-wrap: wrap;
+@@ -343,7 +365,7 @@ body {
+ }
+ 
+ .skills-content h3 {
+-    font-size: 16px;
++    font-size: 1.334em;
+     line-height: 1;
+     margin-bottom: .6rem;
+ }
+@@ -376,6 +398,8 @@ body {
+     color: var(--main-color);
+ }
+ 
++/* ---------- Projects ---------- */
++
+ .portfolio-box .img-box {
+     display: flex;
+     width: 100%;
+@@ -388,7 +412,7 @@ body {
+ .portfolio-box .img-box img {
+     width: 100%;
+     object-fit: cover;
+-    padding: .2rem .2rem .2em;
++    padding: .2rem;
+     transition: .4s ease;
+ }
+ 
+@@ -404,17 +428,19 @@ body {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
++    gap: .5rem;
+     margin: .5rem;
+ }
+ 
+ .portfolio-box .info-box .info-title h3 {
+-    font-size: 16px;
++    font-size: 1.334em;
+ }
+ 
+ .portfolio-box .info-box .info-title a {
+     color: var(--main-color);
+     display: flex;
+     align-items: center;
++    white-space: nowrap;
+ }
+ 
+ .portfolio-box .info-box .info-title a i {
+@@ -435,8 +461,7 @@ body {
+     margin: 0 1.15rem;
+ }
+ 
+-
+-/* Contact me */
++/* ---------- Contact ---------- */
+ 
+ .contact-box {
+     text-align: center;
+@@ -505,8 +530,7 @@ body {
+     top: -1.8rem;
+ }
+ 
+-
+-/* Certifications page */
++/* ---------- Certifications ---------- */
+ 
+ .certifications-box {
+     border-left: .1rem solid #00abf0;
+@@ -537,8 +561,7 @@ body {
+     margin-right: .4rem;
+ }
+ 
+-
+-/* Testimonials page */
++/* ---------- Testimonials ---------- */
+ 
+ .testimonials-box {
+     display: flex;
+@@ -568,23 +591,23 @@ body {
+ .client-info img {
+     width: 3rem;
+     height: 3rem;
++    object-fit: cover;
+     border-radius: 50%;
+     margin-right: 1rem;
+     border: .1rem solid var(--main-color);
+ }
+ 
+ .client-info h3 {
+-    font-size: 14px;
++    font-size: 1.167em;
+     margin-bottom: .2rem;
+ }
+ 
+ .client-info p {
+-    font-size: 12px;
++    font-size: 1em;
+     color: var(--second-text-color);
+ }
+ 
+-
+-/* Blog page */
++/* ---------- Blog ---------- */
+ 
+ .blog-box {
+     display: flex;
+@@ -607,7 +630,7 @@ body {
+ 
+ .blog-content .date {
+     color: var(--main-color);
+-    font-size: 12px;
++    font-size: 1em;
+ }
+ 
+ .blog-content .date i {
+@@ -615,23 +638,22 @@ body {
+ }
+ 
+ .blog-content h3 {
+-    font-size: 14px;
++    font-size: 1.167em;
+     margin: .5rem 0;
+ }
+ 
+ .blog-content p {
+-    font-size: 12px;
++    font-size: 1em;
+     margin-bottom: .5rem;
+ }
+ 
+ .blog-content .btn {
+     width: 8rem;
+     height: 1.5rem;
+-    font-size: 12px;
++    font-size: 1em;
+ }
+ 
+-
+-/* Hobbies page */
++/* ---------- Hobbies ---------- */
+ 
+ .hobbies-box {
+     display: flex;
+@@ -664,346 +686,412 @@ body {
+ }
+ 
+ .hobby-content h3 {
+-    font-size: 14px;
++    font-size: 1.167em;
+     margin-bottom: .5rem;
+ }
+ 
+ .hobby-content p {
+-    font-size: 12px;
++    font-size: 1em;
+ }
+ 
+ 
+-/* Media Queries */
++/* ==========================================================
++   Stacked layout
++   Phones, tablets in portrait, and very short landscape screens.
++   The flip-book is replaced by a normal scrolling page: profile
++   first, then every section as its own card. Keep this media
++   query in sync with `STACKED_QUERY` in script.js.
++   ========================================================== */
+ 
+-@media (max-width: 1200px) {
+-    .wrapper {
+-        width: 80%;
+-        height: auto;
+-        margin-top: 10px;
++@media (max-width: 1000px), (max-height: 520px) {
++    html {
++        font-size: 16px;
+     }
+-    .book-page {
+-        font-size: 10px;
++
++    body {
++        display: block;
++        min-height: 100vh;
++        min-height: 100dvh;
++        overflow-x: hidden;
++        overflow-y: auto;
++        padding: 1rem;
++        padding-left: max(1rem, env(safe-area-inset-left));
++        padding-right: max(1rem, env(safe-area-inset-right));
++        padding-bottom: 5rem;
+     }
+-    .profile-page img {
+-        max-width: 120px;
++
++    .wrapper {
++        width: 100%;
++        max-width: 44rem;
++        height: auto;
++        margin: 0 auto;
++        padding: 0;
++        perspective: none;
+     }
+-    .services-box {
+-        gap: 0.5rem;
++
++    .cover {
++        display: none;
+     }
+-    .skills-content .content span {
+-        width: 4rem;
+-        height: 3rem;
++
++    .book {
++        height: auto;
++        flex-direction: column;
++        gap: 1.25rem;
++        perspective: none;
+     }
+-}
+ 
+-@media (min-width: 801px) and (max-width: 1024px) {
+-    .wrapper {
+-        width: 90%;
++    /* every "page" becomes a normal block */
++    .book .book-page,
++    .book-page.page-right,
++    .book-page.page-right.turn {
++        position: static;
++        width: 100%;
+         height: auto;
++        transform: none;
++        transform-style: flat;
++        transition: none;
++        font-size: .95rem;
++        line-height: 1.55;
++        flex-direction: column;
++        gap: 1.25rem;
+     }
+-    .book-page {
+-        font-size: 11px;
++
++    .book-page.page-left {
++        padding: 1.75rem 1.25rem;
++        border-radius: .75rem;
++        box-shadow: 0 .4rem 1.2rem rgba(0, 0, 0, .25);
+     }
+-    .profile-page img {
+-        max-width: 140px;
++
++    /* the right-hand "pages" only group two cards; the cards carry the styling */
++    .book-page.page-right {
++        background: none;
++        box-shadow: none;
++        padding: 0;
+     }
+-}
+ 
+-@media (min-width: 601px) and (max-width: 800px) {
+-    .wrapper {
+-        width: 40rem;
+-        height: 25rem;
+-        padding: 1rem;
+-        margin-top: 15px;
++    .book-page .page-front,
++    .book-page .page-back {
++        position: relative;
++        top: auto;
++        left: auto;
++        width: 100%;
++        height: auto;
++        transform: none;
++        padding: 1.5rem 1.25rem;
++        border-radius: .75rem;
++        box-shadow: 0 .4rem 1.2rem rgba(0, 0, 0, .25);
++    }
++
++    .number-page,
++    .nextprev-btn {
++        display: none;
+     }
+-    .book .book-page {
+-        font-size: 6px;
++
++    .title {
++        font-size: 1.6rem;
++        margin-bottom: 1.25rem;
+     }
++
++    /* profile */
+     .profile-page img {
+-        max-width: 100px;
++        width: 9rem;
++        margin-bottom: 1rem;
+     }
++
+     .profile-page h1 {
+-        font-size: 15px;
++        font-size: 1.9rem;
++        margin-bottom: .35rem;
+     }
++
+     .profile-page h3 {
+-        font-size: 15px;
++        font-size: 1.1rem;
++    }
++
++    .profile-page .social-media {
++        display: flex;
++        flex-wrap: wrap;
++        justify-content: center;
++        gap: .6rem;
++        margin: 1rem 0;
+     }
++
++    .profile-page .social-media b {
++        display: contents;
++    }
++
+     .profile-page .social-media a {
+-        width: 1.7rem;
+-        height: 1.7rem;
+-        font-size: .9rem;
++        width: 2.75rem;
++        height: 2.75rem;
++        font-size: 1.5rem;
++        margin: 0;
+     }
++
+     .profile-page p {
+-        font-size: 10px;
++        text-align: center;
++        font-size: .95rem;
++        max-width: 34rem;
+     }
+-    .btn {
+-        width: 7.9rem;
+-        height: 2.0rem;
+-        font-size: .58rem;
++
++    .btn,
++    .portfolio-box .btn-box .btn {
++        width: auto;
++        min-width: 9.5rem;
++        height: 2.9rem;
++        padding: 0 1.25rem;
++        margin: 0;
++        font-size: .95rem;
++        text-align: center;
++    }
++
++    .profile-page .btn-box,
++    .portfolio-box .btn-box {
++        display: flex;
++        flex-wrap: wrap;
++        justify-content: center;
++        gap: .75rem;
++        margin-top: 1.25rem;
++        margin-bottom: 0;
++    }
++
++    /* timelines */
++    .workeduc-box {
++        height: auto;
++        overflow: visible;
++        gap: 1.5rem;
+     }
++
+     .workeduc-box .workeduc-content {
+-        font-size: .46rem;
++        margin-bottom: 0;
+     }
+-    .workeduc-content .year {
+-        font-size: .68rem;
++
++    .workeduc-box .workeduc-content::before,
++    .certification-content::before {
++        width: 1rem;
++        height: 1rem;
++        left: -.55rem;
+     }
+-    .number-page {
+-        font-size: .68rem;
++
++    .workeduc-content h3,
++    .certification-content h3 {
++        font-size: 1.05rem;
++        line-height: 1.35;
++        margin: .2rem 0 .3rem;
+     }
+-    .nextprev-btn {
+-        width: 1.3rem;
+-        height: 1.3rem;
++
++    .certification-content {
++        margin-bottom: 1.25rem;
+     }
++
++    /* services */
+     .services-box {
++        display: grid;
++        grid-template-columns: 1fr;
+         gap: 1rem;
+-        font-size: .38rem;
+-        margin-top: -15px;
++        height: auto;
++        overflow: visible;
+     }
++
+     .services-box .services-content {
+-        width: 46%;
+-        height: 45%;
+-        font-size: .6rem;
++        height: auto;
++        padding: 1.1rem 1rem 1.25rem;
+     }
++
+     .services-box i {
+-        font-size: 1.2rem;
++        font-size: 2rem;
+     }
++
+     .services-content h3 {
+-        font-size: .5rem;
++        font-size: 1.1rem;
++        margin: .25rem 0;
+     }
++
+     .services-content p {
+-        font-size: .4rem;
++        font-size: .9rem;
++        margin: .25rem 0 .9rem;
+     }
++
+     .services-content .btn {
+-        width: 4.5rem;
+-        height: 1rem;
+-        font-size: .5rem;
++        width: auto;
++        min-width: 8rem;
++        height: 2.4rem;
++        font-size: .9rem;
+     }
++
++    /* skills */
+     .skills-box {
+-        gap: .5rem;
+-        margin-top: -15px;
++        flex-direction: column;
++        gap: 1.5rem;
++    }
++
++    .skills-box .skills-content {
++        flex: none;
+     }
++
+     .skills-content h3 {
+-        font-size: 12px;
++        font-size: 1.1rem;
++        margin-bottom: .75rem;
++    }
++
++    .skills-content .content {
++        gap: .6rem;
+     }
++
+     .skills-content .content span {
+-        width: 2.5rem;
+-        height: 2.5rem;
++        width: 5.25rem;
++        height: 4.5rem;
++        font-size: .8rem;
+     }
++
+     .skills-content .content span i {
+-        font-size: 1.2rem;
++        font-size: 2rem;
+     }
++
++    /* projects */
+     .portfolio-box .img-box {
+-        height: 7rem;
+-        margin-top: -15px;
++        height: auto;
++        aspect-ratio: 16 / 9;
+     }
+-    .portfolio-box .info-box {
+-        font-size: .5rem;
++
++    .portfolio-box .img-box img {
++        height: 100%;
+     }
+-    .portfolio-box .info-box .info-title h3 {
+-        font-size: .7rem;
++
++    .portfolio-box .info-box {
++        margin: 1rem 0 0;
+     }
+-    .portfolio-box .btn-box .btn {
+-        font-size: .6rem;
++
++    .portfolio-box .info-box .info-title {
++        flex-wrap: wrap;
++        margin: 0 0 .6rem;
+     }
+-    .contact-box {
+-        font-size: .7rem;
++
++    .portfolio-box .info-box .info-title h3 {
++        font-size: 1.1rem;
+     }
++
++    /* contact */
+     .contact-box .field {
+-        font-size: .7rem;
+-        margin-bottom: .5rem;
++        font-size: 1rem; /* 16px stops iOS from zooming into the field */
++        margin-bottom: 1rem;
+     }
++
+     .contact-box textarea {
+-        height: 7rem;
+-    }
+-    .back-profile {
+-        width: 1.5rem;
+-        height: 1.5rem;
++        height: 8rem;
+     }
+-    .back-profile p {
+-        font-size: .7rem;
++
++    .contact-box .btn {
++        width: 100%;
+     }
+-    /* New pages adjustments for medium screens */
+-    .testimonials-box {
++
++    /* testimonials, blog, hobbies */
++    .testimonials-box,
++    .blog-box {
++        height: auto;
++        overflow: visible;
+         gap: 1rem;
+     }
+-    .client-info img {
+-        width: 2.5rem;
+-        height: 2.5rem;
+-    }
+-    .blog-content {
+-        padding: 0.5rem;
+-    }
+-    .hobby-content {
+-        flex: 1 1 45%;
+-        padding: 0.5rem;
+-    }
+-}
+ 
+-@media (min-width: 401px) and (max-width: 600px) {
+-    .wrapper {
+-        width: 30rem;
+-        height: 25rem;
+-        padding: 1rem;
+-        margin-top: 15px;
+-    }
+-    .book .book-page {
+-        font-size: 6px;
+-    }
+-    .profile-page img {
+-        max-width: 60px;
++    .client-info h3,
++    .blog-content h3,
++    .hobby-content h3 {
++        font-size: 1.05rem;
+     }
+-    .profile-page h1 {
+-        font-size: 8px;
+-    }
+-    .profile-page h3 {
+-        font-size: 7px;
+-    }
+-    .profile-page .social-media a {
+-        width: 1.5rem;
+-        height: 1.5rem;
++
++    .client-info p,
++    .blog-content p,
++    .blog-content .date,
++    .hobby-content p {
+         font-size: .9rem;
+     }
+-    .profile-page p {
+-        font-size: 8px;
+-    }
+-    .btn {
+-        width: 7.9rem;
+-        height: 2.0rem;
+-        padding: 0 5px;
+-    }
+-    .workeduc-box .workeduc-content {
+-        font-size: .38rem;
+-    }
+-    .workeduc-content .year {
+-        font-size: .38rem;
+-    }
+-    .number-page {
+-        font-size: .5rem;
+-    }
+-    .nextprev-btn {
+-        width: 1.3rem;
+-        height: 1.3rem;
++
++    .blog-content .btn {
++        width: auto;
++        min-width: 8rem;
++        height: 2.4rem;
++        font-size: .9rem;
++        margin-top: .25rem;
+     }
+-    .services-box {
++
++    .hobbies-box {
++        display: grid;
++        grid-template-columns: repeat(2, 1fr);
+         gap: 1rem;
+-        font-size: .38rem;
+-        margin-top: -15px;
+-    }
+-    .services-box .services-content {
+-        width: 100%;
+-        height: 57px;
+-        font-size: .3rem;
+-        margin-bottom: -7%;
+-    }
+-    .services-box i {
+-        font-size: .5rem;
+-    }
+-    .services-content h3 {
+-        font-size: .3rem;
+-    }
+-    .services-content p {
+-        font-size: .3rem;
+-    }
+-    .services-content .btn {
+-        width: 3.5rem;
+-        height: .8rem;
+-        font-size: .3rem;
+-    }
+-    .skills-box {
+-        gap: .5rem;
+-        margin-top: -15px;
+-    }
+-    .skills-content h3 {
+-        font-size: 12px;
+-    }
+-    .skills-content .content span {
+-        width: 2.5rem;
+-        height: 2.5rem;
+-    }
+-    .skills-content .content span i {
+-        font-size: 1.2rem;
+-    }
+-    .portfolio-box .img-box {
+-        height: 7rem;
+-        margin-top: -15px;
+-    }
+-    .portfolio-box .info-box {
+-        font-size: .5rem;
+-    }
+-    .portfolio-box .info-box .info-title h3 {
+-        font-size: .7rem;
+-    }
+-    .portfolio-box .btn-box .btn {
+-        font-size: .6rem;
+-    }
+-    .contact-box {
+-        font-size: .7rem;
+-    }
+-    .contact-box .field {
+-        font-size: .7rem;
+-        margin-bottom: .5rem;
++        height: auto;
+     }
+-    .contact-box textarea {
+-        height: 6rem;
++
++    .hobby-content {
++        padding: 1.1rem .75rem;
+     }
++
++    /* "Profile" link becomes a floating back-to-top button */
+     .back-profile {
+-        width: 1.5rem;
+-        height: 1.5rem;
++        position: fixed;
++        right: max(1rem, env(safe-area-inset-right));
++        bottom: max(1rem, env(safe-area-inset-bottom));
++        width: 3rem;
++        height: 3rem;
++        font-size: 1.4rem;
++        border-radius: 50%;
++        background: var(--main-color);
++        color: var(--white-color);
++        box-shadow: 0 .3rem .9rem rgba(0, 0, 0, .35);
++        z-index: 200;
+     }
++
+     .back-profile p {
+-        font-size: .7rem;
++        display: none;
+     }
+-    /* New pages adjustments for small screens */
+-    .testimonials-box {
+-        gap: 0.8rem;
+-    }
+-    .client-info {
+-        flex-direction: column;
+-        text-align: center;
+-    }
+-    .client-info img {
+-        margin-right: 0;
+-        margin-bottom: 0.5rem;
++}
++
++/* small phones */
++@media (max-width: 480px) {
++    body {
++        padding: .75rem;
++        padding-bottom: 5rem;
+     }
+-    .blog-content {
+-        padding: 0.5rem;
++
++    .book {
++        gap: 1rem;
+     }
+-    .hobby-content {
+-        flex: 1 1 100%;
+-        padding: 0.5rem;
+-        margin-bottom: 0.5rem;
++
++    .book-page.page-left,
++    .book-page .page-front,
++    .book-page .page-back {
++        padding: 1.25rem 1rem;
+     }
+-}
+ 
+-@media (max-width: 400px) {
+-    .wrapper {
+-        width: 95%;
+-        height: auto;
+-        padding: 0.5rem;
++    .title {
++        font-size: 1.4rem;
+     }
+-    .book .book-page {
+-        font-size: 5px;
+-        padding: 0.5rem;
++
++    .hobbies-box {
++        grid-template-columns: 1fr;
+     }
+-    .profile-page img {
+-        max-width: 50px;
++
++    .client-info img {
++        width: 2.75rem;
++        height: 2.75rem;
++        margin-right: .75rem;
+     }
+-    .btn {
+-        width: 6rem;
+-        height: 1.5rem;
+-        font-size: 0.5rem;
+-        margin: 0 0.5rem;
++}
++
++/* very narrow phones (e.g. 320px) */
++@media (max-width: 360px) {
++    .profile-page h1 {
++        font-size: 1.6rem;
+     }
+-    /* Further adjustments for extra small screens */
+-    .services-box .services-content,
+-    .hobby-content {
+-        flex: 1 1 100%;
++
++    .profile-page .social-media a {
++        width: 2.5rem;
++        height: 2.5rem;
+     }
++
+     .skills-content .content span {
+-        width: 2rem;
+-        height: 2rem;
++        width: 4.75rem;
+     }
+-    .skills-content .content span i {
+-        font-size: 1rem;
++
++    .btn,
++    .portfolio-box .btn-box .btn {
++        min-width: 100%;
+     }
+-}
+\ No newline at end of file
++}
