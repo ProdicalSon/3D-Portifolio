@@ -1,9 +1,15 @@
-
-// Must match the stacked-layout media query in style.css.
-// Below this size the flip-book is replaced by a normal scrolling page.
 const STACKED_QUERY = '(max-width: 1000px), (max-height: 520px)';
 const isStacked = () => window.matchMedia(STACKED_QUERY).matches;
- 
+const contactMeBtn = document.querySelector('.btn.contact-me');
+
+contactMeBtn.onclick = (e) => {
+    e.preventDefault();
+    if (isStacked()) {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+    }
+    // desktop: flip the pages (existing code continues here)
+};
  
 const pages = document.querySelectorAll('.book-page.page-right');
 const pageList = Array.from(pages);
