@@ -1049,7 +1049,29 @@ img {
         padding: .75rem;
         padding-bottom: 5rem;
     }
-
+ 
     .book {
         gap: 1rem;
-    
+    }
+ 
+    .book-page.page-left,
+    .book-page .page-front,
+    .book-page .page-back {
+        padding: 1.25rem 1rem;
+    }
+ 
+    .title {
+        font-size: 1.4rem;
+    }
+ 
+    .hobbies-box {
+        grid-template-columns: 1fr;
+    }
+ 
+    .client-info img {
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-right: .75rem;
+    }
+}
+ 
