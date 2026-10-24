@@ -1075,3 +1075,23 @@ img {
     }
 }
  
+/* very narrow phones (e.g. 320px) */
+@media (max-width: 360px) {
+    .profile-page h1 {
+        font-size: 1.6rem;
+    }
+ 
+    .profile-page .social-media a {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+ 
+    .skills-content .content span {
+        width: 4.75rem;
+    }
+ 
+    .btn,
+    .portfolio-box .btn-box .btn {
+        min-width: 100%;
+    }
+}
