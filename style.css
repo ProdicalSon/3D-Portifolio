@@ -277,7 +277,19 @@ img {
 .workeduc-content .year i {
     margin-right: .4rem;
 }
+.workeduc-content .exp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    margin: .2rem 0 .4rem;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--main-color);
+}
 
+.workeduc-content .exp-link:hover {
+    text-decoration: underline;
+   }
 .number-page {
     position: absolute;
     bottom: 1.2rem;
