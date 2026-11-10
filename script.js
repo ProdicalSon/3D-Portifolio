@@ -104,7 +104,33 @@ form.addEventListener('submit', e => {
         })
         .catch(error => console.error('Error!', error.message))
 })
- 
+
+const moreProjectsBtn = document.getElementById('more-projects-btn');
+const projectsModal = document.getElementById('projects-modal');
+
+if (moreProjectsBtn && projectsModal) {
+    const closeBtn = projectsModal.querySelector('.projects-modal__close');
+
+    const openModal = (e) => {
+        e.preventDefault();
+        projectsModal.hidden = false;
+        document.body.classList.add('modal-open');
+        closeBtn.focus();
+    };
+    const closeModal = () => {
+        projectsModal.hidden = true;
+        document.body.classList.remove('modal-open');
+        moreProjectsBtn.focus();
+    };
+
+    moreProjectsBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    // click on the dark backdrop closes it
+    projectsModal.addEventListener('click', (e) => { if (e.target === projectsModal) closeModal(); });
+    // Esc key closes it
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !projectsModal.hidden) closeModal(); });
+            }
+                       
 // Swipe to turn pages (book layout only, e.g. tablets in landscape)
 let xDown = null;
 let yDown = null;
